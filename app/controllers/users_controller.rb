@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def show
     set_user
     set_current_user
+    @posts = @user.posts
   end
 
   def index
