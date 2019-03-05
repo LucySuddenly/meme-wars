@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
 <%= form_for @user, html: { multipart: true } do |f| %>
 <div class="field">
 <%= f.label :username %>
