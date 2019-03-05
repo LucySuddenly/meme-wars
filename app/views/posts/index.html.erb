@@ -5,6 +5,6 @@
 <% @posts.each do |p| %>
   <div class="post">
   <%= p.title %>
-  <%= p.user.display_name %>
-  <%= image_tag p.image.url %></div>
+  <%= link_to p.user.display_name, user_path(p.user)  %>
+  <%= link_to image_tag(p.image.url), post_path(p) %></div>
 <% end %>
