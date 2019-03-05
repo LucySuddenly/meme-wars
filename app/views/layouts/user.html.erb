@@ -11,6 +11,11 @@
 
   <body>
     <%= link_to "Meme Wars", '/' %><br>
+    <% if session[:user_id] %>
+      <%= link_to 'Logout', access_logout_path %>
+    <% else %>
+      <%= link_to 'Login', access_login_path %>
+    <% end %>
     Buttons for Posts, Comments, and Likes
 
 

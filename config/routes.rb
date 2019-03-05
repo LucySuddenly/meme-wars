@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'admin', to: 'access#menu'
   get "/", to: "posts#index"
   resources :posts do
+    resources :likes
     resources :comments do
       resources :likes
     end
