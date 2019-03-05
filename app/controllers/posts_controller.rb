@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-
+    @posts = sort_by_top(@posts).reverse
   end
 
   def new
@@ -25,6 +25,19 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def sort_by_new(sortable)
+  end
+
+  def sort_by_top(sortable)
+     sortable.sort_by do |item|
+       item.likes.count
+     end
+  end
+
+  def sort_by_dank
+
+  end
 
   def post_params
     params.require(:post).permit(:title, :image, :user_id)
