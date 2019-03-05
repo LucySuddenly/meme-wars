@@ -2,7 +2,17 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @posts = sort_by_top(@posts).reverse
+    @posts = sort_by_dank(@posts)
+  end
+
+  def top
+    @posts = Post.all
+    @posts = sort_by_top(@posts)
+  end
+
+  def fresh
+    @posts = Post.all
+    @posts = sort_by_new(@posts)
   end
 
   def new
@@ -27,15 +37,18 @@ class PostsController < ApplicationController
   private
 
   def sort_by_new(sortable)
+    sortable.sort_by do |item|
+      item.created_at
+    end.reverse
   end
 
   def sort_by_top(sortable)
      sortable.sort_by do |item|
        item.likes.count
-     end
+     end.reverse
   end
 
-  def sort_by_dank
+  def sort_by_dank(sortable)
 
   end
 

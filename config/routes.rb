@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'access/logout'
   get 'admin', to: 'access#menu'
   get "/", to: "posts#index"
+  get "/fresh", to: "posts#fresh"
+  get '/top', to: "posts#top"
   resources :posts do
     resources :likes
     resources :comments do
