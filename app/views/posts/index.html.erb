@@ -1,0 +1,6 @@
+<% @posts.each do |p| %>
+  <div class="post">
+  <%= p.title %>
+  <%= p.user.display_name %>
+  <%= p.image %></div>
+<% end %>
