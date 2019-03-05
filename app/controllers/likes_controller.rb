@@ -2,6 +2,7 @@ class LikesController < ApplicationController
 
   def create
     Like.create(like_params)
+    redirect_to request.referrer
   end
 
   def destroy

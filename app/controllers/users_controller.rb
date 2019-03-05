@@ -37,15 +37,8 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def user_params
     params.require(:user).permit(:username, :display_name, :admin, :password, :avatar, :bio, :location)
-  end
-
-  def set_current_user
-    @current_user = session[:user_id]
   end
 end

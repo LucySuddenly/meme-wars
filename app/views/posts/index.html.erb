@@ -2,9 +2,13 @@
 <%= flash[:notice] %>
 <% end %>
 
+<ul>
 <% @posts.each do |p| %>
-  <div class="post">
-  <%= p.title %>
+  <li><div class="post">
+  <h2><%= p.title %></h2><br>
+  Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb)), user_path(p.user) %>
   <%= link_to p.user.display_name, user_path(p.user)  %>
-  <%= link_to image_tag(p.image.url), post_path(p) %></div>
+  Uploaded on: <%= p.created_at.strftime("%b, %d, %Y") %> at <%= p.created_at.strftime("%I:%M %p %Z") %><br>
+  <%= link_to image_tag(p.image.url), post_path(p) %></div></li><br>
 <% end %>
+</ul>
