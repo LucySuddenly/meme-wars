@@ -3,7 +3,6 @@ class AccessController < ApplicationController
   end
 
   def login
-
     if params[:username].present? && params[:password].present?
       found_user = User.where(username: params[:username]).first
       if found_user

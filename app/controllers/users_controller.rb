@@ -9,11 +9,12 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    byebug
     redirect_to user_path(user)
   end
 
   def show
+    set_user
+    set_current_user
   end
 
   def index
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
 
   def edit
     set_user
+    set_current_user
     unless @current_user == @user
       redirect_to edit_user_path(@current_user)
     end

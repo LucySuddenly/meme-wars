@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
 <div class="login">
   <%= form_tag access_login_path, :method => :post do %>
   <table>
