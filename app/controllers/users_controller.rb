@@ -21,19 +21,14 @@ class UsersController < ApplicationController
 
   def edit
     set_user
+    unless @current_user == @user
+      redirect_to edit_user_path(@current_user)
+    end
   end
 
   def update
     @user.update(user_params)
     redirect_to @user
-  end
-
-  def login
-
-  end
-
-  def logout
-
   end
 
   private
@@ -44,5 +39,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :display_name, :admin, :password_digest, :avatar, :bio, :location)
+  end
+
+  def set_current_user
+    @current_user = session[:user_id]
   end
 end

@@ -2,14 +2,17 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+
   end
 
   def new
     @post = Post.new
+    session[:user_id] = 1
   end
 
   def create
-    Post.create(post_params)
+    post = Post.create(post_params)
+    redirect_to post
   end
 
   def destroy
