@@ -1,5 +1,5 @@
 <h1><%= @post.title %><br></h1>
-Uploaded by: <%= link_to @post.user.display_name, user_path(@post.user)%><br>
+Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 Uploaded on: <%= @post.created_at.strftime("%b, %d, %Y") %> at <%= @post.created_at.strftime("%I:%M %p %Z") %><br>
 <%= image_tag @post.image.url %>
 
