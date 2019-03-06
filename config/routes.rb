@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'access/login'
   post 'access/login'
   get 'access/logout'
+  get "access/admin_login"
+  post "access/admin_login"
   get 'admin', to: 'access#menu'
   get "/dank", to: "posts#dank"
   get "/fresh", to: "posts#fresh"
