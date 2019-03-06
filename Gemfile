@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
  gem 'composite_primary_keys'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem "bulma-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

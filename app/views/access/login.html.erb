@@ -4,20 +4,12 @@
 
 <div class="login">
   <%= form_tag access_login_path, :method => :post do %>
-  <table>
-    <tr>
-      <td> <%= label_tag(:username) %></td>
-      <td><%= text_field_tag(:username, params[:username]) %></td>
-    </tr>
-    <tr>
-      <td> <%= label_tag(:password) %></td>
-      <td><%= password_field_tag(:password) %></td>
-    </tr>
-    <tr>
-      <br>
-      <td><%= submit_tag("Log In") %></td>
-    </tr>
-  </table>
+  <%= label_tag(:username) %>
+        <%= text_field_tag(:username, params[:username]) %>
+      <%= label_tag(:password) %>
+      <%= password_field_tag(:password) %>
+        <%= submit_tag("Log In") %>
+
   <% end %>
 </div>
 
