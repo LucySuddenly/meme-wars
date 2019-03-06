@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   before_action :set_current_user
 
   def new
+    if @current_user
+      redirect_to dank_path
+    end
   @user = User.new
   end
 

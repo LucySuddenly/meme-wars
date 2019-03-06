@@ -5,7 +5,7 @@ Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_pat
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url %>
 <% if @current_user == @post.user.id %>
-<%= button_to "Delete Post", post_path(@post), method: "DELETE", data: {confirm: "Are you sure?"} %>
+<%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 </div>
 
@@ -23,7 +23,11 @@ Likes: <%= @post.likes.count %><br>
 <ul>
 
 
+<h2>Comments:</h2>
 
+<% if !@current_user %>
+  <h4>Please <%= link_to "sign in", access_login_path %> to comment or like</h4>
+  <% end %>
 <ul>
   <%= render(partial: 'comments/comment', collection: @comments) %>
 </ul>

@@ -3,6 +3,9 @@ class AccessController < ApplicationController
   end
 
   def login
+    if @current_user
+      redirect_to dank_path
+    end
     if params[:username].present? && params[:password].present?
       found_user = User.where(username: params[:username]).first
       if found_user
@@ -15,7 +18,6 @@ class AccessController < ApplicationController
       redirect_to user_path(authorized_user)
     else
       flash.now[:notice] = "Invalid username/password combination."
-      render('login')
     end
   end
 
