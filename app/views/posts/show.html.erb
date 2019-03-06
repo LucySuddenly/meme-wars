@@ -6,7 +6,23 @@ Uploaded on: <%= @post.created_at.strftime("%b, %d, %Y") %> at <%= @post.created
 <%= image_tag @post.image.url %>
 </div>
 
+<% if @current_user %>
 <%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}} %><br>
-Likes: <%= @post.likes.count %>
+Likes: <%= @post.likes.count %><br>
+
+<%= form_tag post_comments_path(@post) do  %>
+  <%= label_tag "New Comment"  %>
+  <%= text_area_tag "comment[content]" %>
+  <%= button_to "Submit Comment", post_comments_path(@post), method: "POST", params: {comment: {user_id: @current_user, commentable_id: @post.id, commentable_type: "Post"}} %>
+<% end %>
+<% end %>
 
 <%# iterate through comments associated with this post %>
+<ul>
+
+<% @post.comments.each do |comment| %>
+<li>
+<%= comment.user.display_name %>
+<%= image_tag comment.user.avatar(:thumb) %>
+<%= comment.content %></li>
+<% end %></ul>

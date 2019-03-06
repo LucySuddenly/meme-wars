@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def create
     Comment.create(comment_params)
+    redirect_to request.referrer
   end
 
   private
