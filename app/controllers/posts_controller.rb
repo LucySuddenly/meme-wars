@@ -30,7 +30,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
+    @post = Post.find(params[:id])
+    begin
+    @post.destroy
+    rescue
+    end
+    redirect_to '/'
   end
 
   def show

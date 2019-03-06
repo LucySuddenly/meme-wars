@@ -4,6 +4,9 @@
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url %>
+<% if @current_user == @post.user.id %>
+<%= button_to "Delete Post", post_path(@post), method: "DELETE", data: {confirm: "Are you sure?"} %>
+<% end %>
 </div>
 
 <% if @current_user %>

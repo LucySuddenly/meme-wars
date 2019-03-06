@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/dank", to: "posts#dank"
   get "/fresh", to: "posts#fresh"
   get '/top', to: "posts#top"
+  post 'posts/:id', to: "posts#destroy"
   resources :posts do
     resources :likes
     resources :comments do
