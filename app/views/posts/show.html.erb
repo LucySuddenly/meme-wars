@@ -17,12 +17,14 @@ Likes: <%= @post.likes.count %><br>
 <% end %>
 <% end %>
 
-<%# iterate through comments associated with this post %>
 <ul>
 
 <% @post.comments.each do |comment| %>
 <li>
 <%= comment.user.display_name %>
 <%= image_tag comment.user.avatar(:thumb) %>
-<%= comment.content %></li>
+<%= comment.content %>
+<%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}} %><br>
+Likes: <%= comment.likes.count %>
+</li>
 <% end %></ul>
