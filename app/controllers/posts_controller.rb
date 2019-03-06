@@ -49,7 +49,9 @@ class PostsController < ApplicationController
   end
 
   def sort_by_dank(sortable)
-
+    sortable.sort_by do |item|
+      ((Time.now.to_i - item.updated_at.to_i) / 60 / 60).to_f - item.likes.count.to_f
+    end
   end
 
   def post_params
