@@ -1,0 +1,18 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<ul>
+<% @posts.each do |p| %>
+  <li><div class="post">
+  <h2><%= p.title %></h2><br>
+  Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb)), user_path(p.user) %>
+  <%= link_to p.user.display_name, user_path(p.user)  %>
+  <small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
+  <%= link_to image_tag(p.image.url), post_path(p) %></div></li><br>
+  <% if @current_user %>
+  <%= button_to "Like", post_likes_path(p), method: "POST", params: {like: {user_id: @current_user, likeable_id: p.id, likeable_type: "Post"}} %><br>
+  Likes: <%= p.likes.count %><br>
+  <% end %>
+<% end %>
+</ul>
