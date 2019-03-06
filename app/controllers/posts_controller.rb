@@ -35,6 +35,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments.sort_by {|comment| comment.likes.count}
+    @comments = @comments.reverse
     set_current_user
   end
 

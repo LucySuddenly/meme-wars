@@ -1,0 +1,20 @@
+<li>
+  <%= image_tag comment.user.avatar(:thumb) %><br>
+  <%= comment.user.display_name %>
+  <small>Replied: <%= time_ago_in_words(comment.created_at) %> ago</small>
+  <%= comment.content %>
+  <% if @current_user %>
+  <%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}} %>
+  Likes: <%= comment.likes.count %>
+
+
+  <%= form_tag [comment, Comment.new] do %>
+      <%= text_area_tag "comment[content]" %><br/>
+      <%= button_to "Reply", comment_comments_path(comment_id: comment.id), params: {comment: {user_id: @current_user, commentable_id: comment.id, commentable_type: "Comment"}} %>
+      <% end %><br>
+  <% end %>
+  <ul>
+      <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
+
+</li>

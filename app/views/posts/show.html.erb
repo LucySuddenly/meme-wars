@@ -2,7 +2,7 @@
 
 <div class="post_info">
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
-Uploaded on: <%= @post.created_at.strftime("%b, %d, %Y") %> at <%= @post.created_at.strftime("%I:%M %p %Z") %><br>
+<small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url %>
 </div>
 
@@ -19,12 +19,8 @@ Likes: <%= @post.likes.count %><br>
 
 <ul>
 
-<% @post.comments.each do |comment| %>
-<li>
-<%= comment.user.display_name %>
-<%= image_tag comment.user.avatar(:thumb) %>
-<%= comment.content %>
-<%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}} %><br>
-Likes: <%= comment.likes.count %>
-</li>
-<% end %></ul>
+
+
+<ul>
+  <%= render(partial: 'comments/comment', collection: @comments) %>
+</ul>
