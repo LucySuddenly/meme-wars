@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout 'user'
   before_action :set_user, only: [:update, :show]
   before_action :user_params, only: [:create, :update]
+  before_action :set_current_user
 
   def new
   @user = User.new

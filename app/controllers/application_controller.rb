@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :set_user
   helper_method :set_current_user
+  before_action :set_current_user
 
   def set_user
     @user = User.find(params[:id])
