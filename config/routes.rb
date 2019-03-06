@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-
+  root to: "posts#index"
   get 'access/menu'
   get 'access/login'
   post 'access/login'
   get 'access/logout'
   get 'admin', to: 'access#menu'
-  get "/", to: "posts#index"
+  get "/dank", to: "posts#dank"
   get "/fresh", to: "posts#fresh"
   get '/top', to: "posts#top"
   resources :posts do

@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
 
   def index
+    redirect_to dank_path
+  end
+
+  def dank
     @posts = Post.all
     @posts = sort_by_dank(@posts)
   end
