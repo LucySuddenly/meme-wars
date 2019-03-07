@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
     if @report.save
       redirect_to session[:return_page]
     else
-      render :new
+      redirect_to :new
     end
   end
 
