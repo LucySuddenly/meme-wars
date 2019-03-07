@@ -1,0 +1,9 @@
+<h1>REPORTS</h1>
+<ul>
+<% @reports.each do |report| %>
+<li><%= report.content %>
+<%= link_to report.reportable_type, report.reportable %>
+<%= button_to "Delete Report", [report.reportable, report], method: :delete %>
+</li>
+<% end %>
+</ul>

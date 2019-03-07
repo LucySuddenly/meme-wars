@@ -18,6 +18,7 @@
     Likes: <%= comment.likes.count %>
     <%= form_tag [comment, Comment.new] do %>
       <%= text_area_tag "comment[content]" %><br/>
+      <%= button_to "Report", new_comment_report_path(comment) %>
       <%= button_to "Reply", comment_comments_path(comment_id: comment.id), params: {comment: {user_id: @current_user, commentable_id: comment.id, commentable_type: "Comment"}} %>
     <% end %><br>
   <% end %>

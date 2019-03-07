@@ -4,21 +4,21 @@
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url %>
-<% if @current_user == @post.user.id %>
+<% if @current_user == @post.user.id || @admin %>
 <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 </div>
 
 <% if @current_user %>
 <%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}} %><br>
-Likes: <%= @post.likes.count %><br>
-
+<%= render 'reports/report_button' %>
 <%= form_tag post_comments_path(@post) do  %>
   <%= label_tag "New Comment"  %>
   <%= text_area_tag "comment[content]" %>
   <%= button_to "Submit Comment", post_comments_path(@post), method: "POST", params: {comment: {user_id: @current_user, commentable_id: @post.id, commentable_type: "Post"}} %>
 <% end %>
 <% end %>
+Likes: <%= @post.likes.count %><br>
 
 <ul>
 

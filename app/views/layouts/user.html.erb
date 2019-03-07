@@ -16,6 +16,12 @@
       Logged in as:<%= User.all.find(@current_user).display_name %>
     <% else %>
       <%= link_to 'Login', access_login_path %>
+    <% end %><br>
+
+    <% if session[:admin_id] %>
+      ADMIN logged in.
+      <%= link_to 'Admin Logout', access_admin_logout_path %>
+      <%= link_to "Reports", access_menu_path %>
     <% end %>
 
 

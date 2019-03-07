@@ -1,5 +1,10 @@
 class AccessController < ApplicationController
   def menu
+    if @admin
+      @reports = Report.all
+    else
+      redirect_to dank_path
+    end
   end
 
   def login
@@ -45,4 +50,11 @@ class AccessController < ApplicationController
       flash.now[:notice] = "Invalid username/password combination."
     end
   end
+
+  def admin_logout
+    session[:admin_id] = nil
+    flash[:notice] = "Successfully Logged Out."
+    redirect_to '/'
+  end
+
 end
