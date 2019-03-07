@@ -4,7 +4,7 @@
 
 <ul>
 <% @posts.each do |p| %>
-  <li><div class="post">
+  <li><div class="container">
   <h2><%= p.title %></h2><br>
   <% if p.user %>
   Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb)), user_path(p.user) %>
