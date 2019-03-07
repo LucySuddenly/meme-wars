@@ -30,8 +30,10 @@ class UsersController < ApplicationController
     @posts = @user.posts.reverse
   end
 
-  def index
-
+  def destroy
+    set_user
+    @user.destroy
+    redirect_to dank_path
   end
 
   def edit

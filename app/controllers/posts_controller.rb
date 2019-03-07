@@ -20,8 +20,9 @@ class PostsController < ApplicationController
   end
 
   def new
+    set_current_user
     @post = Post.new
-    session[:user_id] = 1
+    session[:user_id] = @current_user
   end
 
   def create

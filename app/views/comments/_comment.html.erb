@@ -10,7 +10,7 @@
 
   <% if @current_user == comment.user.id %>
   <%= button_to "Edit Comment", edit_comment_path(comment), method: :get %>
-  <%= button_to "Delete Comment", comment_path(comment), method: :delete %>
+  <%= button_to "Delete Comment", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"} %>
   <% end %>
 
   <% if @current_user %>

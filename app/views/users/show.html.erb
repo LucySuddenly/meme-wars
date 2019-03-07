@@ -10,8 +10,9 @@
   <%= image_tag @user.avatar.url(:medium)%>
 </div>
 
-<% if @current_user == @user.id %>
+<% if @current_user == @user.id || @admin %>
 <%= button_to "Edit User", edit_user_path(@user), :method => "get" %>
+<%= button_to "Delete User", user_path(@user), method: :delete , data: {confirm: "Are you sure?"}%>
 <% end %>
 
 <% if @current_user %>
