@@ -2,21 +2,23 @@
 <%= flash[:notice] %>
 <% end %>
 
-<ul>
+<div class="container.fluid">
+
 <% @posts.each do |p| %>
-  <li><div class="container">
+  <div class="container">
   <h2><%= p.title %></h2><br>
   <% if p.user %>
-  Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb)), user_path(p.user) %>
+  Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb), class: "img-circle"), user_path(p.user) %>
   <%= link_to p.user.display_name, user_path(p.user)  %>
   <% else %>
   Uploaded by: (deleted user)
   <% end %>
   <small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
-  <%= link_to image_tag(p.image.url), post_path(p) %></div></li><br>
+  <%= link_to image_tag(p.image.url, class: "img-responsive"), post_path(p) %>
   <% if @current_user %>
   <%= button_to "Like", post_likes_path(p), method: "POST", params: {like: {user_id: @current_user, likeable_id: p.id, likeable_type: "Post"}} %><br>
   <% end %>
-  Likes: <%= p.likes.count %><br>
+  Likes: <%= p.likes.count %>
+  </div><br>
 <% end %>
-</ul>
+</div>
