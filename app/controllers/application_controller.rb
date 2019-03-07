@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :set_current_user
   before_action :set_admin
   before_action :set_current_user
-  before_action :load_reportable, except: [:dank, :fresh, :top, :menu, :login, :logout, :admin_login, :index, :new, :posts, :create]
+  before_action :load_reportable, only: :show
 
   def set_user
     @user = User.find(params[:id])

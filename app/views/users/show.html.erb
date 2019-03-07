@@ -14,6 +14,10 @@
 <%= button_to "Edit User", edit_user_path(@user), :method => "get" %>
 <% end %>
 
+<% if @current_user %>
+<%= render 'reports/report_button' %>
+<% end %>
+
 <div class="posts_container">
 <ul>
 <% @posts.each do |p| %>

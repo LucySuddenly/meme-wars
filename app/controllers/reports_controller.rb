@@ -1,5 +1,7 @@
 class ReportsController < ApplicationController
 
+  before_action :load_reportable, only: [:new, :create]
+
   def new
     session[:return_page] = request.referrer
     @report = @reportable.reports.new
