@@ -6,7 +6,7 @@
 
 <% @posts.each do |p| %>
   <div class="container">
-  <h2><%= p.title %></h2><br>
+  <h1><%= p.title %></h1><br>
   <% if p.user %>
   Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb), class: "img-circle"), user_path(p.user) %>
   <%= link_to p.user.display_name, user_path(p.user)  %>
