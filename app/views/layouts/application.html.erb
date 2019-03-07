@@ -12,7 +12,7 @@
 
   <body>
 
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar-light shadow p-4 mb-4" style="background-color: #e3f2fd;">
   <%= link_to "Meme Wars", '/', class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,12 @@
       <li class="nav-item">
         <%= link_to "Sort by Dank", dank_path, method: :get, class:"nav-link" %>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item active">
+        <% if session[:user_id] %>
+        <%= link_to "Submit new post", new_post_path, method: :get, class:"nav-link", id:"justify-right-2nd-last"%>
+        <% end %>
+      </li>
+      <li class="nav-item dropdown" id="justify-right-last">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if session[:user_id] %>
           Logged in as: <%= User.all.find(@current_user).username %>

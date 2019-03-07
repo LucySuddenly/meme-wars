@@ -1,13 +1,13 @@
-<h1><%= @post.title %><br></h1>
 
-<div class="post_info">
+<div class="container shadow-lg p-4 mb-4 bg-white">
+  <h1><%= @post.title %><br></h1>
 <% if @post.user %>
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 <% else %>
 Uploaded by: (deleted user)
 <% end %>
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
-<%= image_tag @post.image.url %>
+<%= image_tag @post.image.url, class: "img-responsive" %>
 <% if @post.user %>
 <% if @current_user == @post.user.id %>
 <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
@@ -16,7 +16,6 @@ Uploaded by: (deleted user)
 <% if @admin %>
   <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
-</div>
 
 <% if @current_user %>
 <%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}} %><br>
@@ -29,14 +28,17 @@ Uploaded by: (deleted user)
 <% end %>
 Likes: <%= @post.likes.count %><br>
 
-<ul>
+</div>
 
+
+<div class="container">
 
 <h2>Comments:</h2>
 
 <% if !@current_user %>
   <h4>Please <%= link_to "sign in", access_login_path %> to comment or like</h4>
   <% end %>
-<ul>
+<ul class="list-unstyled">
   <%= render(partial: 'comments/comment', collection: @comments) %>
 </ul>
+</div>
