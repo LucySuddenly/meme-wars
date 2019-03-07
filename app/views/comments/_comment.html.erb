@@ -1,5 +1,5 @@
 <li>
-  <div class="container shadow-lg p-4 mb-4 bg-white">
+  <div class="container-fluid shadow-lg p-4 mb-4 bg-white">
 
   <%= link_to image_tag(comment.user.avatar(:thumb)), user_path(comment.user) %><br>
   <%= comment.user.display_name %>
@@ -14,7 +14,7 @@
   <ul class="nav">
     <% if @current_user %>
     <li class="nav-item">
-      <%= link_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}}, class: "nav-link" %>
+      <%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}}, class: "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to "Report", new_comment_report_path(comment), class: "nav-link" %>

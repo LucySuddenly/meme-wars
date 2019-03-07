@@ -4,18 +4,16 @@
 <% if @post.user %>
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 <% else %>
-Uploaded by: (deleted user)
+Uploaded by: (Deleted User)
 <% end %>
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url, class: "img-responsive" %>
-<% if @post.user %>
-<% if @current_user == @post.user.id %>
+<% if @post.user || @admin %>
+<% if @current_user == @post.user.id || @admin %>
 <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 <% end %>
-<% if @admin %>
-  <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+
 
 <% if @current_user %>
 <%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}} %><br>

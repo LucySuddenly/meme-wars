@@ -9,7 +9,7 @@
   Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb), class: "rounded-lg"), user_path(p.user) %>
   <%= link_to p.user.display_name, user_path(p.user)  %>
   <% else %>
-  Uploaded by: (deleted user)
+  Uploaded by: (Deleted User)
   <% end %>
   <br><small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
   <%= link_to image_tag(p.image.url, class: "img-responsive"), post_path(p) %>
