@@ -25,8 +25,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create(post_params)
-    redirect_to post
+    post = Post.new(post_params)
+    if post.valid?
+      post.save
+      redirect_to post
+    else
+      flash[:notice] = "You must attach an image."
+      redirect_to new_post_path
+    end
   end
 
   def destroy
