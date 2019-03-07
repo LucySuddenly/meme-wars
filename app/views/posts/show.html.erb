@@ -1,11 +1,20 @@
 <h1><%= @post.title %><br></h1>
 
 <div class="post_info">
+<% if @post.user %>
 Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
+<% else %>
+Uploaded by: (deleted user)
+<% end %>
 <small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
 <%= image_tag @post.image.url %>
-<% if @current_user == @post.user.id || @admin %>
+<% if @post.user %>
+<% if @current_user == @post.user.id %>
 <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
+<% end %>
+<% if @admin %>
+  <%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
 </div>
 

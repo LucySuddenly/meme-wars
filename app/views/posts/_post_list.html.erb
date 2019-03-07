@@ -6,8 +6,12 @@
 <% @posts.each do |p| %>
   <li><div class="post">
   <h2><%= p.title %></h2><br>
+  <% if p.user %>
   Uploaded by: <%= link_to image_tag(p.user.avatar.url(:thumb)), user_path(p.user) %>
   <%= link_to p.user.display_name, user_path(p.user)  %>
+  <% else %>
+  Uploaded by: (deleted user)
+  <% end %>
   <small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
   <%= link_to image_tag(p.image.url), post_path(p) %></div></li><br>
   <% if @current_user %>
