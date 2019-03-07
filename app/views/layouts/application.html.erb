@@ -15,7 +15,7 @@
     <%= link_to "Meme Wars", '/' %><br>
     <% if session[:user_id] %>
       <%= link_to 'Logout', access_logout_path %>
-      Logged in as: <%= User.all.find(@current_user).display_name %>
+      Logged in as: <%= link_to User.all.find(@current_user).display_name, user_path(@current_user) %>
     <% else %>
       <%= link_to 'Login', access_login_path %>
     <% end %><br>
