@@ -1,6 +1,5 @@
-<% if flash[:notice] %>
-<%= flash[:notice] %>
-<% end %>
+
+<div class="form-group">
 
 <%= form_for @user, html: { multipart: true } do |f| %>
 <div class="field">
@@ -33,5 +32,6 @@
 </div>
 <%= f.submit %>
 <% end %>
+</div>
 
 <%= link_to "Or sign in", access_login_path %>
