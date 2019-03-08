@@ -1,37 +1,37 @@
 
 <div class="form-group">
 
-<%= form_for @user, html: { multipart: true } do |f| %>
-<div class="field">
-<%= f.label :username %>
-<%= f.text_field :username %>
-</div>
-<div class="field">
-<%= f.label :display_name %>
-<%= f.text_field :display_name %>
-</div>
-<div class="field">
-<%= f.label :location %>
-<%= f.text_field :location %>
-</div>
-<div class="field">
-  <%= f.label :bio %>
-  <%= f.text_field :bio %>
-</div>
-<div class="field">
-<%= f.label :password %>
-<%= f.password_field :password %>
-</div>
-<div class="field">
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %>
-</div>
-<div class="field">
-<%= f.label :avatar %>
-<%= f.file_field :avatar %>
-</div>
-<%= f.submit %>
-<% end %>
-</div>
+  <%= form_for @user, html: { multipart: true } do |f| %>
+  <div class="field">
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  </div>
+  <div class="field">
+  <%= f.label :display_name %>
+  <%= f.text_field :display_name %>
+  </div>
+  <div class="field">
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :bio %>
+    <%= f.text_field :bio %>
+  </div>
+  <div class="field">
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  </div>
+  <div class="field">
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="field">
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+  </div>
+  <%= f.submit %>
+  <% end %>
+  </div>
 
-<%= link_to "Or sign in", access_login_path %>
+  <%= link_to "Or sign in", access_login_path %>
