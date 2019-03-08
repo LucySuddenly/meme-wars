@@ -4,31 +4,67 @@
     <title>Meme Wars</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= link_to "Meme Wars", '/' %><br>
-    <% if session[:user_id] %>
-      <%= link_to 'Logout', access_logout_path %>
-      Logged in as: <%= User.all.find(@current_user).display_name %>
-    <% else %>
-      <%= link_to 'Login', access_login_path %>
-    <% end %><br>
-
-    <% if session[:admin_id] %>
-      ADMIN logged in.
-      <%= link_to 'Admin Logout', access_admin_logout_path %>
-      <%= link_to "Reports", access_menu_path %>
-    <% end %>
 
 
-    Buttons for Posts, Comments, and Likes
+    <nav class="navbar navbar-expand-lg navbar-light shadow p-4 mb-4" style="background-color: #e3f2fd;">
+  <%= link_to "Meme Wars", '/', class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "Sort by Top", top_path, method: :get, class:"nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sort by Fresh", fresh_path, method: :get, class:"nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sort by Dank", dank_path, method: :get, class:"nav-link" %>
+      </li>
+      <li class="nav-item active">
+        <% if session[:user_id] %>
+        <%= link_to "Submit New Post", new_post_path, method: :get, class:"nav-link", id:"justify-right-2nd-last"%>
+        <% end %>
+      </li>
+      <li class="nav-item dropdown" id="justify-right-last">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if session[:user_id] %>
+          Logged in as: <%= User.all.find(@current_user).username %>
+          <% else %>
+          Please Login
+          <% end %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <% if session[:user_id] %>
+          <%= link_to "Profile", user_path(@current_user), class: "dropdown-item" %>
+            <%= link_to 'Logout', access_logout_path, class: "dropdown-item" %>
+          <% else %>
+            <%= link_to 'Login', access_login_path, class: "dropdown-item" %>
+          <% end %>
+          <% if session[:admin_id] %>
+          <%= link_to 'Admin Logout', access_admin_logout_path, class: "dropdown-item"  %>
+          <%= link_to "Reports", access_menu_path, class: "dropdown-item"  %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 
     <%= yield %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
   </body>
