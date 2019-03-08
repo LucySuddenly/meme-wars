@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable
   has_many :reports, as: :reportable
   validates :title, presence: true
+  validates_format_of :image_url, :with => %r{\.(png|jpg|jpeg)$}i, multiline: true
 
 
 

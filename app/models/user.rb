@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :likes
   validates :username, {uniqueness: true, presence: true}
   validates :display_name, presence: true
+  validates_format_of :avatar_url, :with => %r{\.(png|jpg|jpeg)$}i, multiline: true
   has_secure_password
 
   def number_of_likes
