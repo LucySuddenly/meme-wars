@@ -16,14 +16,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-#justify-right-last{
-    position: absolute;
-    left: 88%;
-    margin:auto;
+#justify-right-last {
+  position: absolute;
+  left: 88%;
+  margin: auto;
 }
-#justify-right-2nd-last{
-    position: absolute;
-    left: 78%;
-    margin:auto;
+#justify-right-2nd-last {
+  position: absolute;
+  left: 78%;
+  margin: auto;
+}
+body {
+  padding-top: 65px;
 }

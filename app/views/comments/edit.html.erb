@@ -1,8 +1,9 @@
 
+
 <div class="container">
  <%= form_for @comment do |c| %>
- <%= c.label "Edit Comment:" %>
- <%= c.text_area :content %>
+ <%= c.label "Edit Comment:" %><br>
+ <%= c.text_area :content %><br>
  <%= c.submit %>
  <% end %>
 </div>

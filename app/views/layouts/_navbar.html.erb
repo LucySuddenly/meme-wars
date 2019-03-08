@@ -1,5 +1,5 @@
 <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light shadow p-4 mb-4" style="background-color: #e3f2fd;">
-      <%= link_to "Meme Wars", '/', class: "navbar-brand" %>
+      <%= link_to "Meme Wars", '/', class: "navbar-brand ml-auto" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -14,20 +14,20 @@
         <li class="nav-item">
           <%= link_to "Sort by Fresh", fresh_path, method: :get, class:"nav-link" %>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active font-weight-bold">
           <% if session[:user_id] %>
           <%= link_to "Submit New Post", new_post_path, method: :get, class:"nav-link"%>
           <% end %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle font-weight-bold" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if session[:user_id] %>
               Logged in as: <%= User.all.find(@current_user).username %>
             <% else %>
               Please Login
             <% end %>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
             <% if session[:user_id] %>
               <%= link_to "Profile", user_path(@current_user), class: "dropdown-item" %>
               <%= link_to 'Logout', access_logout_path, class: "dropdown-item" %>

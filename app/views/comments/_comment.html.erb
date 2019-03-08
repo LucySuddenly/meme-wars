@@ -1,8 +1,7 @@
 <li>
   <div class="container-fluid shadow-lg p-4 mb-4 bg-white">
 
-  <%= link_to image_tag(comment.user.avatar(:thumb), class: "rounded-lg"), user_path(comment.user) %><br>
-  <%= comment.user.display_name %>
+  <%= link_to image_tag(comment.user.avatar(:thumb), class: "shadow mb-1 rounded-lg"), user_path(comment.user) %> <%=link_to comment.user.display_name, user_path(comment.user)%><br>
   <small>Replied: <%= time_ago_in_words(comment.created_at) %> ago</small>
 
   <% if comment.updated_at != comment.created_at %>
