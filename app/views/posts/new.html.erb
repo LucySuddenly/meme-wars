@@ -12,6 +12,7 @@
   <div class="field">
     <%= f.label "Paste image URL here" %>
     <%= f.text_field :image_url %>
+    (We recommend Imgur.com)
     <%= f.hidden_field :user_id, value: session[:user_id] %>
    </div>
     <%= f.submit %>
