@@ -20,8 +20,8 @@
 <%= f.password_field :password_confirmation %>
 </div>
 <div class="field">
-<%= f.label :avatar %>
-<%= f.file_field :avatar %>
+<%= f.label "Paste Avatar URL here" %>
+<%= f.text_field :avatar_url %>
 </div>
 <%= f.submit %>
 <% end %>
