@@ -1,16 +1,15 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
 
-<%= form_for @post do |f| %>
-<div class="field">
-<%= f.label :title %>
-<%= f.text_field :title %>
-</div>
-<div class="field">
-<%= f.label :image %>
-<%= f.file_field :image %>
-<%= f.hidden_field :user_id, value: session[:user_id] %>
-</div>
-<%= f.submit %>
-<% end %>
+<div class="container shadow-lg p-4 mb-4 bg-white"> 
+    <%= form_for @post do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :user_id, value: session[:user_id] %>
+   </div>
+    <%= f.submit %>
+    <% end %>
+  </div>

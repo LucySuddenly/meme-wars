@@ -3,11 +3,11 @@
 <div class="container-fluid">
 
 <% @posts.each do |p| %>
-  <div class="container shadow-lg p-4 mb-4 bg-white">
+  <div class="container shadow-lg p-4 mb-4 bg-white rounded">
   <h1><%= p.title %></h1><br>
   <% if p.user %>
-  Uploaded by: <br><%= link_to image_tag(p.user.avatar.url(:thumb), class: "rounded-lg"), user_path(p.user) %>
-  <%= link_to p.user.display_name, user_path(p.user)  %>
+  Uploaded by: <br><%= link_to image_tag(p.user.avatar.url(:thumb), class: "shadow mb-1 rounded-lg"), user_path(p.user) %>
+  <strong><%= link_to p.user.display_name, user_path(p.user)  %></strong>
   <% else %>
   Uploaded by: (Deleted User)
   <% end %>

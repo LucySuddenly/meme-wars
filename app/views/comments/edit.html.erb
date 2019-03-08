@@ -1,5 +1,8 @@
-<%= form_for @comment do |c| %>
-<%= c.label "Edit Comment:" %>
-<%= c.text_area :content %>
-<%= c.submit %>
-<% end %>
+
+<div class="container">
+ <%= form_for @comment do |c| %>
+ <%= c.label "Edit Comment:" %>
+ <%= c.text_area :content %>
+ <%= c.submit %>
+ <% end %>
+</div>

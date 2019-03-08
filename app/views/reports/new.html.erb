@@ -1,4 +1,13 @@
+   <br>
+   <br>   
+   <br>
+   <br>
+   <br>
+   <br>   
+<div class="container-fluid">
 <%= form_for [@reportable, @report] do |f| %>
-<%= f.text_area :content %>
+Reason for report:<br>
+<%= f.text_area :content %><br>
 <%= f.submit %>
 <% end %>
+</div>

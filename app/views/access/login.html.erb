@@ -1,13 +1,13 @@
+<div class="container">
+  <div class="login container">
+    <%= form_tag access_login_path, :method => :post do %>
+    <%= label_tag(:username) %>
+          <%= text_field_tag(:username, params[:username]) %>
+        <%= label_tag(:password) %>
+        <%= password_field_tag(:password) %>
+          <%= submit_tag("Log In") %>
 
-<div class="login">
-  <%= form_tag access_login_path, :method => :post do %>
-  <%= label_tag(:username) %>
-        <%= text_field_tag(:username, params[:username]) %>
-      <%= label_tag(:password) %>
-      <%= password_field_tag(:password) %>
-        <%= submit_tag("Log In") %>
-
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
 <%= link_to "Or sign up", new_user_path %>
