@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container shadow-lg p-4 mb-4 bg-white">
   <div class="login container">
     <%= form_tag access_login_path, :method => :post do %>
     <%= label_tag(:username) %>
@@ -8,6 +8,5 @@
           <%= submit_tag("Log In") %>
 
     <% end %>
+    <h2><%= link_to "Or sign up", new_user_path %></h2>
   </div>
-
-<%= link_to "Or sign up", new_user_path %>
