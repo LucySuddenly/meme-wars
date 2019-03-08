@@ -2,7 +2,7 @@
 <div class="container shadow-lg p-4 mb-4 bg-white rounded-lg">
   <h1><%= @post.title %><br></h1>
 <% if @post.user %>
-Uploaded by: <br> <%= link_to image_tag(@post.user.avatar_url, size: "150x150", class: "shadow mb-1 rounded-lg"), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
+Uploaded by: <br> <%= link_to image_tag(@post.user.avatar_url, style: "max-height:150px; max-width:150px", class: "shadow mb-1 rounded-lg"), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
 <% else %>
 Uploaded by: (Deleted User)
 <% end %>

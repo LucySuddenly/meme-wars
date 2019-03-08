@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= image_tag @user.avatar_url, class: "shadow-lg mb-1 rounded-lg", size: "150x150"%>
+      <%= image_tag @user.avatar_url, class: "shadow-lg mb-1 rounded-lg", style: "max-height:150px; max-width:150px"%>
     </div>
     <div class="col">
       <h4>Bio: <%= @user.bio %></h4>
