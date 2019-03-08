@@ -1,5 +1,5 @@
 
-<div class="container shadow-lg p-4 mb-4 bg-white"> 
+<div class="container shadow-lg p-4 mb-4 bg-white">
   <br>
     <h1>Submit New Post:</h1>
   <br>
@@ -10,8 +10,9 @@
   </div>
   <br>
   <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.label "Paste image URL here" %>
+    <%= f.text_field :image_url %>
+    (We recommend Imgur.com, must end in .gif, .jpg, .jpeg, or .png)
     <%= f.hidden_field :user_id, value: session[:user_id] %>
    </div>
     <%= f.submit %>

@@ -1,24 +1,35 @@
-# README
+# Meme Wars
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Meme Wars is a social image board.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+Run 'bundle install' to install required gems.
 
-* System dependencies
+```bash
+bundle install
+```
 
-* Configuration
+[Install Postgres](https://www.postgresql.org/download/)
 
-* Database creation
+Run 'rake db:create','rake db:migrate' and 'rake db:setup' in the root directory to create the database locally.
 
-* Database initialization
+```bash
+rake db:create && rake db:migrate && rake db:setup
+```
 
-* How to run the test suite
+Run 'rails s' to start local web server
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails s
+```
 
-* Deployment instructions
+Navigate to localhost:3000 in your favorite web browser.
 
-* ...
+To post, comment, or like, click Login, then Sign Up to create an account.
+
+## Contributing
+Contributions are welcome. Feel free to open a pull request or branch from this project.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

@@ -6,13 +6,13 @@
   <div class="container shadow-lg p-4 mb-4 bg-white rounded">
   <h1><%= p.title %></h1><br>
   <% if p.user %>
-  Uploaded by: <br><%= link_to image_tag(p.user.avatar.url(:thumb), class: "shadow mb-1 rounded-lg"), user_path(p.user) %>
+  Uploaded by: <br><%= link_to image_tag(p.user.avatar_url, class: "shadow mb-1 rounded-lg", style: "max-height:150px; max-width:150px"), user_path(p.user) %>
   <strong><%= link_to p.user.display_name, user_path(p.user)  %></strong>
   <% else %>
   Uploaded by: (Deleted User)
   <% end %>
   <br><small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
-  <%= link_to image_tag(p.image.url, class: "img-responsive"), post_path(p) %>
+  <%= link_to image_tag(p.image_url, class: "img-responsive"), post_path(p) %>
   <% if @current_user %><br>
   <%= button_to "Like", post_likes_path(p), method: "POST", params: {like: {user_id: @current_user, likeable_id: p.id, likeable_type: "Post"}} %><br>
   <% end %>

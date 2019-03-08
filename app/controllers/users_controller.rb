@@ -18,7 +18,6 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
-      flash[:notice] = "Your password and password confirmation did not match"
       redirect_to new_user_path
     end
 
@@ -53,6 +52,6 @@ class UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:username, :display_name, :admin, :password, :password_confirmation, :avatar, :bio, :location)
+    params.require(:user).permit(:username, :display_name, :admin, :password, :password_confirmation, :avatar_url, :bio, :location)
   end
 end

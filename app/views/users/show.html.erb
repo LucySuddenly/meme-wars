@@ -12,7 +12,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= image_tag @user.avatar.url(:medium), class: "shadow-lg mb-1 rounded-lg"%>
+      <%= image_tag @user.avatar_url, class: "shadow-lg mb-1 rounded-lg", style: "max-height:150px; max-width:150px"%>
     </div>
     <div class="col">
       <h4>Bio: <%= @user.bio %></h4>
@@ -51,7 +51,7 @@
 <% @posts.each do |p| %>
   <li><div class="shadow-lg p-4 mb-4 bg-white rounded"><h2><%= p.title %></h2><br>
   <small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
-  <%= link_to image_tag(p.image.url, class: "img-responsive"), post_path(p) %><br>
+  <%= link_to image_tag(p.image_url, class: "img-responsive"), post_path(p) %><br>
   Likes: <%= p.likes.count %> </div></li>
 <% end %>
 </ul>

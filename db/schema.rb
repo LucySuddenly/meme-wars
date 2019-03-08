@@ -42,12 +42,9 @@ ActiveRecord::Schema.define(version: 2019_03_06_212434) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -64,14 +61,11 @@ ActiveRecord::Schema.define(version: 2019_03_06_212434) do
     t.string "username"
     t.string "display_name"
     t.string "password_digest"
+    t.string "avatar_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "bio"
     t.string "location"
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.bigint "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
 end
