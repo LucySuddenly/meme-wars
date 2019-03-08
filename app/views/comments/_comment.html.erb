@@ -1,28 +1,44 @@
 <li>
-  <%= link_to image_tag(comment.user.avatar(:thumb)), user_path(comment.user) %><br>
+  <div class="container-fluid shadow-lg p-4 mb-4 bg-white">
+
+  <%= link_to image_tag(comment.user.avatar(:thumb), class: "rounded-lg"), user_path(comment.user) %><br>
   <%= comment.user.display_name %>
   <small>Replied: <%= time_ago_in_words(comment.created_at) %> ago</small>
 
   <% if comment.updated_at != comment.created_at %>
     <small><%= "(edited " + time_ago_in_words(comment.updated_at) + " ago)" %></small>
   <% end %>
-  <%= comment.content %>
+  <h3><%= comment.content %></h3>
 
-  <% if @current_user == comment.user.id %>
-  <%= button_to "Edit Comment", edit_comment_path(comment), method: :get %>
-  <%= button_to "Delete Comment", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"} %>
-  <% end %>
+  <h6>Likes: <%= comment.likes.count %></h6>
+  <ul class="nav">
+    <% if @current_user %>
+    <li class="nav-item">
+      <%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}}, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Report", new_comment_report_path(comment), class: "nav-link" %>
+    </li>
+    <% end %>
+    <% if @current_user == comment.user.id %>
+    <li class="nav-item">
+      <%= link_to "Edit Comment", edit_comment_path(comment), method: :get, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Delete Comment", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "nav-link" %>
+    </li>
+    <% end %>
+
+  </ul>
 
   <% if @current_user %>
-    <%= button_to "Like", post_comment_likes_path(comment_id: comment.id, post_id: @post), method: "POST", params: {like: {user_id: @current_user, likeable_id: comment.id, likeable_type: "Comment"}} %>
-    Likes: <%= comment.likes.count %>
     <%= form_tag [comment, Comment.new] do %>
       <%= text_area_tag "comment[content]" %><br/>
-      <%= button_to "Report", new_comment_report_path(comment) %>
       <%= button_to "Reply", comment_comments_path(comment_id: comment.id), params: {comment: {user_id: @current_user, commentable_id: comment.id, commentable_type: "Comment"}} %>
     <% end %><br>
   <% end %>
-  <ul>
+</div>
+  <ul style="list-style:none;">
       <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
 

@@ -1,31 +1,62 @@
-<% if flash[:notice] %>
-<%= flash[:notice] %>
-<% end %>
 
-<h1><%= @user.username %></h1>
-<h2><%= @user.display_name %></h2>
-<h4><%= @user.location %></h4>
-<p><%= @user.bio %></p>
-<div class="avatar">
-  <%= image_tag @user.avatar.url(:medium)%>
+
+<div class="container">
+  <div class="container shadow-lg p-4 mb-4 bg-white">
+  <div class="row">
+    <div class="col">
+    <h1><%= @user.display_name %></h1>
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+      <h4>Location: <%= @user.location %></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= image_tag @user.avatar.url(:medium), class: "rounded-lg"%>
+    </div>
+    <div class="col">
+      <h4>Bio: <%= @user.bio %></h4>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col">
+        Accumulated Likes: <%= @user.number_of_likes %>
+      </div>
+    </div>
+
+<ul class="nav">
+  <li class="nav-item">
+    <% if @current_user == @user.id || @admin %>
+    <%= link_to "Edit User", edit_user_path(@user), class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Delete User", user_path(@user), method: :delete , data: {confirm: "Are you sure?"}, class: "nav-link"%>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if @current_user %>
+    <%= link_to "Report", [:new, @reportable, :report], method: :get, class: "nav-link"  %>
+    <% end %>
+  </li>
+</ul>
+
 </div>
 
-<% if @current_user == @user.id || @admin %>
-<%= button_to "Edit User", edit_user_path(@user), :method => "get" %>
-<%= button_to "Delete User", user_path(@user), method: :delete , data: {confirm: "Are you sure?"}%>
-<% end %>
-
 <% if @current_user %>
-<%= render 'reports/report_button' %>
+
 <% end %>
 
-<div class="posts_container">
-<ul>
+<div class="container">
+<ul style="list-style:none;">
 <% @posts.each do |p| %>
-  <li><div class="post"><%= p.title %>
+  <li><div class=" shadow-lg p-4 mb-4 bg-white"><h2><%= p.title %></h2><br>
   <small>Uploaded: <%= time_ago_in_words(p.created_at) %> ago</small><br>
-  <%= link_to image_tag(p.image.url), post_path(p) %></div></li>
-  Likes: <%= p.likes.count %>
+  <%= link_to image_tag(p.image.url, class: "img-responsive"), post_path(p) %><br>
+  Likes: <%= p.likes.count %> </div></li>
 <% end %>
 </ul>
+</div>
 </div>

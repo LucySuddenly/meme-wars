@@ -1,33 +1,56 @@
-<h1><%= @post.title %><br></h1>
 
-<div class="post_info">
-Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb)), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
-<small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
-<%= image_tag @post.image.url %>
-<% if @current_user == @post.user.id || @admin %>
-<%= button_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<div class="container shadow-lg p-4 mb-4 bg-white">
+  <h1><%= @post.title %><br></h1>
+<% if @post.user %>
+Uploaded by: <br> <%= link_to image_tag(@post.user.avatar.url(:thumb), class: "rounded-lg"), user_path(@post.user) %> <%= link_to @post.user.display_name, user_path(@post.user)%> <br>
+<% else %>
+Uploaded by: (Deleted User)
 <% end %>
-</div>
+<small>Uploaded: <%= time_ago_in_words(@post.created_at) %> ago</small><br>
+<%= image_tag @post.image.url, class: "img-responsive" %><br>
+
+Likes: <%= @post.likes.count %><br><br>
+<ul class="nav">
+  <li class="nav-item">
+
+    <% if @current_user %>
+    <%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}}, class: "nav-link" %><br>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if @post.user || @admin %>
+    <% if @current_user == @post.user.id || @admin %>
+    <%= link_to "Delete Post", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: "nav-link" %>
+    <% end %>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if @current_user %>
+    <%= link_to "Report", [:new, @reportable, :report], method: :get, class: "nav-link"  %>
+    <% end %>
+  </li>
+</ul>
+
+
 
 <% if @current_user %>
-<%= button_to "Like", post_likes_path(@post), method: "POST", params: {like: {user_id: @current_user, likeable_id: @post.id, likeable_type: "Post"}} %><br>
-<%= render 'reports/report_button' %>
 <%= form_tag post_comments_path(@post) do  %>
-  <%= label_tag "New Comment"  %>
-  <%= text_area_tag "comment[content]" %>
+  <%= text_area_tag "comment[content]" %><br>
   <%= button_to "Submit Comment", post_comments_path(@post), method: "POST", params: {comment: {user_id: @current_user, commentable_id: @post.id, commentable_type: "Post"}} %>
 <% end %>
 <% end %>
-Likes: <%= @post.likes.count %><br>
 
-<ul>
+</div>
 
+
+<div class="container">
 
 <h2>Comments:</h2>
 
 <% if !@current_user %>
   <h4>Please <%= link_to "sign in", access_login_path %> to comment or like</h4>
   <% end %>
-<ul>
+<ul class="list-unstyled">
   <%= render(partial: 'comments/comment', collection: @comments) %>
 </ul>
+</div>

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def edit
     set_user
     set_current_user
-    unless @current_user == @user
+    unless @current_user == @user.id
       redirect_to edit_user_path(@current_user)
     end
   end

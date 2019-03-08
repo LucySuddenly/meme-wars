@@ -8,4 +8,14 @@ class User < ApplicationRecord
   validates :username, {uniqueness: true, presence: true}
   validates :display_name, presence: true
   has_secure_password
+
+  def number_of_likes
+    counter = 0
+    self.posts.each do |p|
+      counter += p.likes.count
+    end
+    counter
+  end
+
+
 end

@@ -6,15 +6,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # Comment.create(comment_params)
-    # redirect_to request.referrer
     @comment = @commentable.comments.new comment_params
-
-    if @comment.save
-      redirect_to request.referrer, notice: 'Your comment was successfully posted!'
-    else
-      redirect_to request.referrer, notice: "Your comment wasn't posted!"
-    end
+    @comment.save
+    redirect_to request.referrer
   end
 
   def edit
@@ -29,9 +23,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    post_id = @comment.commentable_id
+  
     @comment.destroy
-    redirect_to post_path(post_id)
+    redirect_to request.referrer
   end
 
   private

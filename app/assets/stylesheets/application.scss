@@ -13,4 +13,17 @@
  *= require_tree .
  *= require_self
  */
-@import "bulma";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+#justify-right-last{
+    position: absolute;
+    left: 88%;
+    margin:auto;
+}
+#justify-right-2nd-last{
+    position: absolute;
+    left: 78%;
+    margin:auto;
+}

@@ -1,11 +1,7 @@
-<div class="submit_button">
-  <%= button_to "Submit new post", new_post_path, method: :get %>
-</div>
-
-  <h4>Sorted by Dank</h4>
-
-  <%= button_to "Sort by Top", top_path, method: :get %><%= button_to "Sort by Fresh", fresh_path, method: :get %>
 
 
+  <div class="container">
+    <h4>Sorted by Dank</h4>
+  </div>
 
 <%= render "posts/post_list" %>
