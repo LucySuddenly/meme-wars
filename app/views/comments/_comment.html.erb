@@ -23,6 +23,7 @@
       <%= link_to "Report", new_comment_report_path(comment), class: "nav-link" %>
     </li>
     <% end %>
+    <% if comment.user %>
     <% if @current_user == comment.user.id %>
     <li class="nav-item">
       <%= link_to "Edit Comment", edit_comment_path(comment), method: :get, class: "nav-link" %>
@@ -30,6 +31,7 @@
     <li class="nav-item">
       <%= link_to "Delete Comment", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "nav-link" %>
     </li>
+    <% end %>
     <% end %>
 
   </ul>
