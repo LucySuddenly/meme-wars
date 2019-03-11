@@ -23,7 +23,7 @@ class Post < ApplicationRecord
 
   def self.sort_by_dank
     Post.all.sort_by do |item|
-     item.likes.count.to_f - ((Time.now.to_i - item.updated_at.to_i) / 60 / 60).to_f
+     ((Time.now.to_i - item.updated_at.to_i) / 60 / 60).to_f - item.likes.count.to_f 
     end
   end
 
