@@ -9,6 +9,23 @@ class Post < ApplicationRecord
   validates_format_of :image_url, :with => %r{\.(png|jpg|jpeg|gif|mp4|mpeg4|gifv)$}i, multiline: true
   validates :image_url, presence: true
 
+  def self.sort_by_new
+    Post.all.sort_by do |item|
+      item.created_at
+    end.reverse
+  end
+
+  def self.sort_by_top
+     Post.all.sort_by do |item|
+       item.likes.count
+     end.reverse
+  end
+
+  def self.sort_by_dank
+    Post.all.sort_by do |item|
+     item.likes.count.to_f - ((Time.now.to_i - item.updated_at.to_i) / 60 / 60).to_f
+    end
+  end
 
 
 end

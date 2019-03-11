@@ -5,18 +5,15 @@ class PostsController < ApplicationController
   end
 
   def dank
-    @posts = Post.all
-    @posts = sort_by_dank(@posts)
+    @posts = Post.sort_by_dank
   end
 
   def top
-    @posts = Post.all
-    @posts = sort_by_top(@posts)
+    @posts = Post.sort_by_top
   end
 
   def fresh
-    @posts = Post.all
-    @posts = sort_by_new(@posts)
+    @posts = Post.sort_by_new
   end
 
   def new
@@ -53,24 +50,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def sort_by_new(sortable)
-    sortable.sort_by do |item|
-      item.created_at
-    end.reverse
-  end
-
-  def sort_by_top(sortable)
-     sortable.sort_by do |item|
-       item.likes.count
-     end.reverse
-  end
-
-  def sort_by_dank(sortable)
-    sortable.sort_by do |item|
-      ((Time.now.to_i - item.updated_at.to_i) / 60 / 60).to_f - item.likes.count.to_f
-    end
-  end
 
   def post_params
     params.require(:post).permit(:title, :image_url, :user_id)
