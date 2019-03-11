@@ -1,0 +1,12 @@
+<% if @comment.user %>
+<%= link_to image_tag(@comment.user.avatar_url, class: "shadow mb-1 rounded-lg", style: "max-height:150px; max-width:150px"), user_path(@comment.user) %> <%=link_to @comment.user.display_name, user_path(@comment.user)%><br>
+<% else %>
+(Deleted User)
+<% end %>
+<small>Replied: <%= time_ago_in_words(@comment.created_at) %> ago</small>
+
+<% if @comment.updated_at != @comment.created_at %>
+  <small><%= "(edited " + time_ago_in_words(@comment.updated_at) + " ago)" %></small>
+<% end %>
+<h3><%= @comment.content %></h3>
+<%= link_to "Delete Comment", comment_path(@comment), method: :delete, data: {confirm: "Are you sure?"}, class: "nav-link" %>

@@ -1,8 +1,15 @@
 class CommentsController < ApplicationController
   before_action :find_commentable
+  before_action :find_comment, only: [:show, :update, :destroy, :edit]
 
   def new
     @comment = Comment.new
+  end
+
+  def show
+    if !session[:admin_id]
+      redirect_to dank_path
+    end
   end
 
   def create
@@ -12,18 +19,15 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     redirect_to post_path(@comment.commentable_id)
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-  
+
     @comment.destroy
     redirect_to request.referrer
   end
@@ -37,5 +41,9 @@ class CommentsController < ApplicationController
   def find_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
     @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
+  end
+
+  def find_comment
+    @comment = Comment.find(params[:id])
   end
 end
