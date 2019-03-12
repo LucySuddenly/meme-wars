@@ -2,6 +2,8 @@
 
 Meme Wars is a social image board.
 
+[Here's a hosted example](https://super-meme-wars.herokuapp.com)
+
 ## Installation
 
 Run 'bundle install' to install required gems.
